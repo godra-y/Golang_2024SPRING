@@ -1,4 +1,6 @@
-package api
+package myapi
+
+import "errors"
 
 type Character struct {
 	Id          int    `json:"id"`
@@ -18,4 +20,17 @@ var Characters = []Character{
 	{6, "Polly", "Gray", 1884, "Peaky Blinders", "Businesswoman"},
 	{7, "Michael", "Gray", 1903, "Peaky Blinders", "Accountant"},
 	{8, "Finn", "Shelby", 1908, "Peaky Blinders", "Businessman"},
+}
+
+func GetСharacters() []Character {
+	return Characters
+}
+
+func GetCharacter(id int) (*Character, error) {
+	for i := range Characters {
+		if Characters[i].Id == id {
+			return &Characters[i], nil
+		}
+	}
+	return nil, errors.New("Character not found")
 }

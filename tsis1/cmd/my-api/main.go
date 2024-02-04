@@ -4,7 +4,6 @@ import (
 	"log"
 	"net/http"
 
-	handlers "github.com/godra-y/tsis1/pkg"
 	"github.com/gorilla/mux"
 )
 
@@ -13,9 +12,9 @@ func main() {
 	router := mux.NewRouter()
 	log.Println("creating routers")
 
-	router.HandleFunc("/health-check", handlers.HealthCheck).Methods("GET")
-	router.HandleFunc("/characters", handlers.GetCharacters).Methods("GET")
-	router.HandleFunc("/characters/{id}", handlers.GetCharacter).Methods("GET")
+	router.HandleFunc("/health-check", HealthCheck).Methods("GET")
+	router.HandleFunc("/characters", Characters).Methods("GET")
+	router.HandleFunc("/characters/{id}", Character).Methods("GET")
 
 	http.Handle("/", router)
 	log.Println("API server is ready to serve")
